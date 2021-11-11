@@ -15,68 +15,68 @@ define(["jquery"], function ($) {
                     component: "dropdown",
                     label: "Choose master visualization",
                     ref: "pMasterObjectId",
-                    options: async function(arg) {
-						const enigma = app.model.enigmaModel;
-						const sessObj = await enigma.createSessionObject({
-							qInfo: {
-								qType: "masterobject",
-							},
-							qAppObjectListDef: {
-								qType: "masterobject",
-								qData: {
-									name: "/metadata/name",
-									visualization: "/visualization",
-									tags: "/metadata/tags"
-								}
-							}
-						});
-						const masterVisList = await sessObj.getLayout();			
-						var ret = [];
-						for (const qItem of masterVisList.qAppObjectList.qItems) {
-							ret.push({value: qItem.qInfo.qId, label: qItem.qData.visualization + ': ' + qItem.qMeta.title})
-						}
-						
-						ret.sort(function (a, b){
-						  return ((a.label < b.label) ? -1 : ((a.label >  b.label) ? 1 : 0));
-						});
-						//console.log('Master Visualizations found', ret);
-						return ret;
-					}
+                    options: async function (arg) {
+                        const enigma = app.model.enigmaModel;
+                        const sessObj = await enigma.createSessionObject({
+                            qInfo: {
+                                qType: "masterobject",
+                            },
+                            qAppObjectListDef: {
+                                qType: "masterobject",
+                                qData: {
+                                    name: "/metadata/name",
+                                    visualization: "/visualization",
+                                    tags: "/metadata/tags"
+                                }
+                            }
+                        });
+                        const masterVisList = await sessObj.getLayout();
+                        var ret = [];
+                        for (const qItem of masterVisList.qAppObjectList.qItems) {
+                            ret.push({ value: qItem.qInfo.qId, label: qItem.qData.visualization + ': ' + qItem.qMeta.title })
+                        }
+
+                        ret.sort(function (a, b) {
+                            return ((a.label < b.label) ? -1 : ((a.label > b.label) ? 1 : 0));
+                        });
+                        //console.log('Master Visualizations found', ret);
+                        return ret;
+                    }
                 }, {
                     type: "string",
                     defaultValue: "above",
                     ref: "pAboveBelow",
                     label: "Show checkboxes",
-					component: "buttongroup",
-					options: [{
-						value: "above",
-						label: "Above",
-						tooltip: "Above the graphics"
-					}, {
-						value: "below",
-						label: "Below",
-						tooltip: "Below the graphics"
-					}]
-                },{
+                    component: "buttongroup",
+                    options: [{
+                        value: "above",
+                        label: "Above",
+                        tooltip: "Above the graphics"
+                    }, {
+                        value: "below",
+                        label: "Below",
+                        tooltip: "Below the graphics"
+                    }]
+                }, {
                     type: "string",
                     defaultValue: "left",
                     ref: "pAlign",
                     label: "Show checkboxes",
-					component: "buttongroup",
-					options: [{
-						value: "left",
-						label: "Left",
-						tooltip: "Left-align the checkboxes"
-					}, {
-						value: "center",
-						label: "Center",
-						tooltip: "Center the checkboxes"
-					},{
-						value: "right",
-						label: "Right",
-						tooltip: "Right-align the checkboxes"
-					}]
-                },{
+                    component: "buttongroup",
+                    options: [{
+                        value: "left",
+                        label: "Left",
+                        tooltip: "Left-align the checkboxes"
+                    }, {
+                        value: "center",
+                        label: "Center",
+                        tooltip: "Center the checkboxes"
+                    }, {
+                        value: "right",
+                        label: "Right",
+                        tooltip: "Right-align the checkboxes"
+                    }]
+                }, {
                     type: "boolean",
                     defaultValue: false,
                     ref: "pNoBkgr",
@@ -93,7 +93,7 @@ define(["jquery"], function ($) {
         about: function (qext) {
             return [
                 {
-                    label: function(arg) { return 'Installed extension version ' + qext.version },
+                    label: function (arg) { return 'Installed extension version ' + qext.version },
                     component: "link",
                     url: '../extensions/db_ext_VisChanger/db_ext_VisChanger.qext'
                 }, {
