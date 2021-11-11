@@ -3,7 +3,12 @@
     "type": "visualization",
     "description": "Manipulate a master visualization's measures",
     "icon": "line-chart",
-    "version": "0.1.0",
+    "version": "0.1.2",
+	"changehistory":[
+		["0.1.0","initial version"],
+		["0.1.1","auto-adjust checkboxes height"],
+		["0.1.2","fixed label lookup when measure is master item"]
+	],
     "author": "Christof Schwarz",
     "homepage": "www.databridge.ch",
     "keywords": "qlik-sense, visualization",
@@ -13,4 +18,4 @@
     "dependencies": {
         "qlik-sense": ">=3.0.x"
     }
-}
+} 
