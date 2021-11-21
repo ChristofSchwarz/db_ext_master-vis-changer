@@ -1,7 +1,8 @@
 # Master Visualization Changer
 
-Qlik Sense extension, that shows a group of checkboxes for each measure within a chart. The user can show/hide the corresponding
-measure in the chart by selecting/deselecting the checkboxes. 
+This Qlik Sense extension, adds a group of checkboxes for each measure within a chart. The user can show/hide the corresponding
+measure in the chart by selecting/deselecting the checkboxes. Also, measures can be **grouped** into such with a modifier (for example 
+"full accumulation") and such without. That way the user can switch between accumulation and no accumulation.
 
 ![screenshot](./pics/demo.gif "screenshot")
 
