@@ -9,3 +9,9 @@ measure in the chart by selecting/deselecting the checkboxes.
 Since there is no "conditional show" formula available in the
 charts (only in tables and pivots), the only way to achieve this is by copying the properties of a master item, manipulate the
 measure list, and using the [Visualization API](https://help.qlik.com/en-US/sense-developer/May2021/Subsystems/APIs/Content/Sense_ClientAPIs/CapabilityAPIs/VisualizationAPI/create-method.htm)  to render it.
+
+## Known limitations
+
+* No support of Internet Explorer
+* The context menu for Export, Switch to Data View, ... of the chart is not available
+ 
