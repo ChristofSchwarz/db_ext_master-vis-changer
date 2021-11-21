@@ -3,7 +3,7 @@
 Qlik Sense extension, that shows a group of checkboxes for each measure within a chart. The user can show/hide the corresponding
 measure in the chart by selecting/deselecting the checkboxes. 
 
-![screenshot](./pics/show-hide-measures.gif "screenshot")
+![screenshot](./pics/demo.gif "screenshot")
 
 ## Approach
 Since there is no "conditional show" formula available in the
