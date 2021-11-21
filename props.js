@@ -3,14 +3,7 @@ define(["jquery"], function ($) {
 
         presentation: function (app) {
             return [
-                /*{
-                    label: 'Master item object id',
-                    type: 'string',
-                    ref: 'pMasterObjectId',
-					defaultValue: '27e46510-3cc4-4ac2-9854-175b7cf422f6',
-                    expression: 'optional'
-                    //show: function (arg) { return arg.pVisType == 'm' }
-                },*/ {
+                 {
                     type: "string",
                     component: "dropdown",
                     label: "Choose master visualization",
@@ -79,8 +72,38 @@ define(["jquery"], function ($) {
                 }, {
                     type: "boolean",
                     defaultValue: false,
+                    ref: "pGroupCheckboxes",
+                    label: "Group measures with modifiers"
+                }, {
+                    type: "string",
+                    defaultValue: 'Accumulate',
+					ref: 'pSwitchLabel',
+                    expression: 'optional',
+					label: 'Label for switch',
+					show: function(arg) {  return arg.pGroupCheckboxes }
+                }, {
+                    type: "boolean",
+                    defaultValue: false,
                     ref: "pNoBkgr",
                     label: "Turn off background"
+                }, {
+                    type: "boolean",
+                    defaultValue: true,
+                    ref: "pLocalStorage",
+                    label: "Remember user choice in Local Storage"
+                }, {
+                    label: "See current value", 
+					component: "button",
+                    action: function (arg) {
+                        const lStorageKey = app.id  + '|' + arg.qInfo.qId;
+						const content = window.localStorage.getItem(lStorageKey)
+							.replace(/":/g, '": ').replace(/,/g, ',\n');
+						alert(content);
+                    },
+					show: function(arg) { 
+						const lStorageKey = app.id  + '|' + arg.qInfo.qId;
+						return arg.pLocalStorage && window.localStorage.getItem(lStorageKey) 
+					}
                 }, {
                     type: "boolean",
                     defaultValue: false,
