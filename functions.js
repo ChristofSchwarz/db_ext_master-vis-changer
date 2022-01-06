@@ -58,7 +58,7 @@ define(["jquery"], function ($) {
             }
             const morePx = last ? Math.max(0, last.top - first.top) : 0;
             $('#checkboxes_' + ownId).css('height', 25 + morePx);
-            $('#vis_' + ownId).css('height', 'calc(100% - ' + (25 - morePx) + 'px)');
+            $('#vis_' + ownId).css('height', 'calc(100% - ' + (25 + morePx) + 'px)');
         },
 
 

@@ -39,6 +39,10 @@ define(["qlik", "jquery", "./props", "./functions"], function (qlik, $, props, f
             canTakeSnapshot: false
         },
 
+        // updateData: function (layout) {
+        //     return qlik.Promise.resolve();
+        // },
+
         resize: function ($element, layout) {
             var self = this;
             const ownId = this.options.id;
@@ -65,8 +69,10 @@ define(["qlik", "jquery", "./props", "./functions"], function (qlik, $, props, f
 
 
             // turn off (white) bg color of this object
-            $('[tid="' + ownId + '"] .qv-inner-object').css('background-color', layout.pNoBkgr ? 'argb(0,0,0,0)' : '');
-            $('[tid="' + ownId + '"] .qv-object').css('border-width', layout.pNoBkgr ? '0px' : '');
+            if (layout.pNoBkgr) {
+                $('[tid="' + ownId + '"] .qv-inner-object').css('background-color', 'argb(0,0,0,0)');
+                $('[tid="' + ownId + '"] .qv-object').css('border-width', '0px');
+            }
 
             $element.html(
                 '<div id="parent_' + ownId + '" style="height:100%;position:relative;">' +
@@ -131,7 +137,6 @@ define(["qlik", "jquery", "./props", "./functions"], function (qlik, $, props, f
                 '            title="One or more measure has no modified/unmodified sibling."></span>' +
                 '    </div>' +
                 '</div>';
-
 
 
             if (layout.pAboveBelow == 'above') {
@@ -207,11 +212,14 @@ define(["qlik", "jquery", "./props", "./functions"], function (qlik, $, props, f
                                 vsettings[ownId].checkboxes[mId] = lStorage.hasOwnProperty(mId) ? lStorage[mId] : true;
                             }
 
+
+                            $('#' + ownId + '_' + mId + '_parent').remove(); // if this label has been rendered in DOM before, remove it
                             // get label of measure and render checkbox
                             $('#zone2_' + ownId).append(
-                                '  <label class="lui-checkbox  ' + (hasModifier ? 'modified' : 'unmodified') + '"'
-                                + '    style="' + (hasModifier && layout.pGroupCheckboxes ? 'display:none;' : 'display:inline;') +
-                                '        margin-right:12px;margin-bottom:5px;">' +
+                                '  <label class="lui-checkbox  ' + (hasModifier ? 'modified' : 'unmodified') + '"' +
+                                '    style="' + (hasModifier && layout.pGroupCheckboxes ? 'display:none;' : 'display:inline;') +
+                                '        margin-right:12px;margin-bottom:5px;"' +
+                                '    id="' + ownId + '_' + mId + '_parent">' +
                                 '    <input class="lui-checkbox__input" type="checkbox" aria-label="Label" id="' + ownId + '_inp_' + mId + '"'
                                 + (vsettings[ownId].checkboxes[mId] ? 'checked' : '') + ' />' +
                                 '    <div class="lui-checkbox__check-wrap">' +
